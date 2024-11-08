@@ -1,4 +1,4 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
 
 /**,
@@ -128,4 +128,4 @@ const showResData = (code, msg, data = []) => {
   };
 };
 
-module.exports = router;
+export default router;

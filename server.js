@@ -1,8 +1,8 @@
-const express = require("express");
-require("express-async-errors");
-const gsRouter = require("./routes/gsRouter.js");
-const testRouter = require("./routes/testRouter.js");
-const swaggerInstall = require("./swaggers");
+import express from "express";
+import "express-async-errors";
+import gsRouter from "./routes/gsRouter.js";
+import testRouter from "./routes/testRouter.js";
+import swaggerInstall from "./swaggers/index.js";
 
 const app = express();
 const port = 5601;

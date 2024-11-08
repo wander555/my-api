@@ -1,5 +1,6 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
+import { gotScraping } from "got-scraping";
 
 /**,
  * @swagger
@@ -61,6 +62,30 @@ router.get("/jointsky-hazardous-waste/info", async (req, res, next) => {
   res.send(showResData("200", "ok", data));
 });
 
+/**,
+ * @swagger
+ * /test/gotUrl:
+ *    get:
+ *      tags:
+ *      - test
+ *      summary:
+ *      produces:
+ *      - application/json
+ *      responses:
+ *        200:
+ *          description: ok
+ *        500:
+ *          description: 系统异常
+ * */
+router.all("/gotUrl", async (req, res, next) => {
+  console.time("label");
+  gotScraping.get("https://javdb.com").then(({ body }) => {
+    console.log(body);
+    console.timeEnd("label");
+    res.send(showResData("200", "ok", JSON.parse(body).proxy));
+  });
+});
+
 const showResData = (code, msg, data = []) => {
   return {
     code,
@@ -69,4 +94,4 @@ const showResData = (code, msg, data = []) => {
   };
 };
 
-module.exports = router;
+export default router;

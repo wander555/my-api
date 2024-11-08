@@ -1,7 +1,11 @@
-const path = require("path");
-const express = require("express");
-const swaggerUI = require("swagger-ui-express");
-const swaggerDoc = require("swagger-jsdoc");
+import path from "path";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+import express from "express";
+import swaggerUI from "swagger-ui-express";
+import swaggerDoc from "swagger-jsdoc";
 //配置swagger-jsdoc
 const options = {
   definition: {
@@ -31,4 +35,5 @@ var swaggerInstall = function (app) {
   // 使用 swaggerSpec 生成 swagger 文档页面，并开放在指定路由
   app.use("/swagger", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 };
-module.exports = swaggerInstall;
+
+export default swaggerInstall;
